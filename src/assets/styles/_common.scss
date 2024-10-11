@@ -1,0 +1,57 @@
+@import "../../assets/variables/colors.scss"; // Import color variables
+
+/* Button Styling */
+.primary-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color:  $primary;  // Reusing primary color from variables
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    background-color: $primary-hover; // You can create a hover state variable in your colors file
+}
+
+/* Input Control Styling */
+.input-control {
+    width: 100%;
+    height: 38px;
+    border-radius: 7px;
+    border: solid 1px $input-border; // Use a variable for border color
+}
+
+
+/*  Form Field Styling */
+.form-field{
+    margin-top:1.5em;
+}
+
+/*  Input Label Styling */
+.form-label{
+    color:$text-color;
+    font-size:14px;
+    font-weight:500
+}
+/* Define other reusable elements here */
+
+/* Reusable flexbox utility classes */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Spacing utilities */
+.margin-small {
+    margin: 8px;
+}
+
+.padding-medium {
+    padding: 16px;
+}

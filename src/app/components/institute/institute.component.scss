@@ -1,0 +1,64 @@
+.profile-image-cnt {
+  position: relative;
+  height: 35.5vh;
+  width: 100%;
+  background-color: red;
+}
+
+.logo-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 4%;
+  height: 25vh; /* Same height as logo */
+  overflow: visible; /* Allows the logo to hang outside */
+}
+
+.logo-cnt {
+  background-color: yellow;
+  border-radius: 50%;
+  height: 25vh;
+  width: 25vh;
+  position: relative;
+  bottom: -12.5vh;
+}
+
+.content-cnt{
+    margin-top:4.5em;
+}
+
+.flex-container {
+  display: flex; /* Make it a flex container */
+  justify-content: space-between; /* Push items to opposite ends */
+  align-items: center; /* Center items vertically */
+  width: 100%; /* Ensure it takes full width */
+
+  h1 {
+    margin: 0; /* Remove default margin */
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+
+.institute-details{
+    margin-top:1em;
+}
+
+
+.contact-details{
+    ul{
+        list-style-type: none;
+        margin:0px;
+        padding:0px
+    }
+
+    li{
+        margin-bottom:10px;
+    }
+
+    .owner_name{
+        font-weight: 600;
+        font-size:22px;
+        
+    }
+}
