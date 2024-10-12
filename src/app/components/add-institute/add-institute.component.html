@@ -27,7 +27,7 @@
             </div>
             <div class="col-12 form-field">
                 <label for="" class="form-label">Mobile Number</label>
-                <input type="text" class="input-control" formControlName="mobileNumber">
+                <input type="text" class="input-control" formControlName="mobileNumber" (keypress)="restrictAlpha($event)">
             </div>
             <div class="col-12 form-field">
                 <label for="" class="form-label">Email ID</label>

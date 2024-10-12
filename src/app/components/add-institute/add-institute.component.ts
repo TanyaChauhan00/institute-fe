@@ -132,4 +132,13 @@ this.router.navigateByUrl('/')
 public close() {
   this.router.navigateByUrl('')
 }
+
+public restrictAlpha(event:KeyboardEvent){
+const regex = /^[a-zA-z]*$/
+if(regex.test(event.key)){
+  event.preventDefault();
+  return false;
+}
+return true;
+}
 }
