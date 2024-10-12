@@ -10,7 +10,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'techglide-test';
+  title = 'Institute-Ng';
   @HostListener('document:contextmenu', ['$event'])
   disableRightClick(event: MouseEvent): void {
     event.preventDefault();
