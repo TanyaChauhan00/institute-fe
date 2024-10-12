@@ -1,15 +1,15 @@
-<div class="container-fluid profile-image-cnt" [ngStyle]="{'background-image': 'url(' + (InstituteImages?.thumbnail || '/assets/no-image.png') + ')'}">
+<div class="container-fluid profile-image-cnt"
+    [ngStyle]="{'background-image': 'url(' + (InstituteImages?.thumbnail || '/assets/no-image.png') + ')'}">
     <div class="edit-profile-btn" (click)="goToEditImage()">
-        <p><span><img src="../../../assets/tabler_edit.png"/></span>Edit Profile Images</p>
+        <p><span><img src="../../../assets/tabler_edit.png" /></span>Edit Profile Images</p>
     </div>
-    <div class="col-6">
-        <div class="logo-wrapper">
-            <div class="logo-cnt"  [ngStyle]="{'background-image': 'url(' + (InstituteImages?.logo || '/assets/no-image.png') + ')'}"></div>
-        </div>
+
+    <div class="logo-wrapper">
+        <div class="logo-cnt"
+            [ngStyle]="{'background-image': 'url(' + (InstituteImages?.logo || '/assets/no-image.png') + ')'}"></div>
     </div>
-    <div class="col-6">
-   
-    </div>
+
+
 
 </div>
 
@@ -17,7 +17,8 @@
     <div class="row">
         <div class="flex-container">
             <h1 class="text-start">{{InstituteData.instituteName || 'Dummy Text'}}</h1>
-            <h6 class="text-end edit-profile"  (click)="goToEdit()"><span><img src="../../../assets/edit.svg" style="width:15px"/></span>edit profile</h6>
+            <h6 class="text-end edit-profile" (click)="goToEdit()"><span><img src="../../../assets/edit.svg"
+                        style="width:15px" /></span>edit profile</h6>
         </div>
 
         <p class="institute-details">
@@ -26,22 +27,59 @@
 
         <div class="contact-details">
             <ul>
-                <li class="owner_name"><span><img src="../../../assets/profile.png"/></span> {{InstituteData.ownerName || 'Dummy Text'}} </li>
-                <li><span><img src="../../../assets/phone.png"/></span> {{InstituteData.mobileNumber || '9876543216'}} </li>
-                <li><span><img src="../../../assets/mail.png"/></span> {{InstituteData.email || 'dummy@yopmail.com'}} </li>
+                <li class="owner_name"><span><img src="../../../assets/profile.png" /></span> {{InstituteData.ownerName
+                    || 'Dummy Text'}} </li>
+                <li><span><img src="../../../assets/phone.png" /></span> {{InstituteData.mobileNumber || '9876543216'}}
+                </li>
+                <li><span><img src="../../../assets/mail.png" /></span> {{InstituteData.email || 'dummy@yopmail.com'}}
+                </li>
+            </ul>
+            @if(lat && lng){
+            <div class="my-3">
+                <div class="mapouter">
+                    <div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0"
+                            marginwidth="0" [src]="mapSrc"></iframe><a href="https://fridaynightfunkin.lol/">fnf</a>
+                    </div>
+                    <style>
+                        .mapouter {
+                            position: relative;
+                            text-align: right;
+                            width: 100%;
+                            height: 300px;
+                        }
+
+                        .gmap_canvas {
+                            overflow: hidden;
+                            background: none !important;
+                            width: 100%;
+                            height: 300px;
+                        }
+
+                        .gmap_iframe {
+                            width: 100% !important;
+                            height: 300px !important;
+                        }
+                    </style>
+                </div>
+            </div>
+            }
+            <ul>
+                <li><span><img src="../../../assets/pin (1).png" /></span> {{InstituteData.address ||
+                    'dummy@yopmail.com'}} </li>
             </ul>
         </div>
+
     </div>
-    
+
 
 </div>
-<div class="add-course-cnt">
-    <div class="d-flex">
-        <div>
+<div class="add-course-cnt mt-4">
+    <div class="row m-2">
+        <div class="col-7">
             <h6>Launch Your Course</h6>
-        <p>Create courses and start earning anytime, anywhere.</p>
+            <p>Create courses and start earning anytime, anywhere.</p>
         </div>
-        <div>
+        <div class="col-5 text-end">
             <button class="add-course-btn" (click)="addCourse()">
                 + Add Course
             </button>

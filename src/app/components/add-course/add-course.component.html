@@ -26,6 +26,7 @@
             <input
               type="text"
               class="input-control-2"
+              [formControl]="domainUrl"
             />
             <span class="icon">
               <img src="/assets/icon-park-twotone_copy.png" alt="Icon" />
@@ -38,7 +39,7 @@
         </div>
 
         <div class="col-12">
-          <button class="add-domain-btn" (click)="addDomain()">
+          <button class="add-domain-btn" (click)="addDomain()" [disabled]="!siteName.value && !domainUrl.value">
             + Add My Domain
           </button>
         </div>

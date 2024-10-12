@@ -98,6 +98,7 @@ public detectLocation(): void {
         const { latitude, longitude } = position.coords;
         console.log('Latitude: ', latitude, 'Longitude: ', longitude);
         this.getAddressFromCoordinates(latitude, longitude);
+        this.storageService.latLng.next({latitude,longitude})
       },
       (error) => {
         console.error('Error detecting location:', error);
@@ -125,5 +126,10 @@ getAddressFromCoordinates(latitude: number, longitude: number): void {
 public onSave(){
 this.storageService.setInstituteName(this.instituteForm.value)
 this.router.navigateByUrl('/')
+}
+
+  
+public close() {
+  this.router.navigateByUrl('')
 }
 }

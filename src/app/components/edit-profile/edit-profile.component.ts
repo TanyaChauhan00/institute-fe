@@ -109,6 +109,6 @@ export class EditProfileComponent {
 
   
   public close() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('')
   }
 }
