@@ -1,4 +1,4 @@
-<div class="container-fluid mx-4 profile-image-cnt"
+<div class="container-fluid px-4 profile-image-cnt"
     [ngStyle]="{'background-image': 'url(' + (InstituteImages?.thumbnail || '/assets/no-image.png') + ')'}">
     <div class="edit-profile-btn" (click)="goToEditImage()">
         <p><span><img src="../../../assets/tabler_edit.png" /></span>Edit Profile Images</p>
@@ -18,7 +18,7 @@
 
 </div>
 
-<div class="container-fluid mx-4 content-cnt">
+<div class="container-fluid px-4 content-cnt">
     <div class="row">
         <div class="flex-container">
             <h1 class="text-start">{{InstituteData.instituteName || 'Dummy Text'}}</h1>
