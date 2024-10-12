@@ -71,10 +71,9 @@ export class EditProfileComponent {
 
     this.convertToBase64(file).then((base64: string) => {
       this[base64Key] = base64;
-      this[imageKey] = base64; // Update image preview
+      this[imageKey] = base64; 
     });
 
-    // Directly pass the key name of the progress bar to simulateUpload
     this.simulateUpload(progressKey, 10);
   }
 

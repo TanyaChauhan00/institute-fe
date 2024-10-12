@@ -8,17 +8,17 @@
         <div class="logo-cnt"
             [ngStyle]="{'background-image': 'url(' + (InstituteImages?.logo || '/assets/no-image.png') + ')'}"></div>
     </div>
-
-    <div class="progress-bar-wrapper">
-        <div class="progress" style="height: 1px;">
-            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-      </div>
-      
-
 </div>
 
 <div class="container-fluid px-4 content-cnt">
+    <div class="align-items-center progressbar-custom">
+        <p class="mb-1">Your Personal Info <b>{{ progress }}%</b> Completed</p>
+        <div class="progress" style="flex-grow: 1; margin-right: 10px;">
+            <div class="progress-bar" [style.width]="progress + '%'"></div>
+        </div>
+    </div>
+    
+    
     <div class="row">
         <div class="flex-container">
             <h1 class="text-start">{{InstituteData.instituteName || 'Dummy Text'}}</h1>

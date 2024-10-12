@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StorageService } from '../../utils/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -17,7 +18,7 @@ public domainUrl:any = new FormControl('')
 public videoFileName: string | null = null;
 public videoFile: string | null = null;
 
-constructor(private fb:FormBuilder,private storageService:StorageService){
+constructor(private fb:FormBuilder,private storageService:StorageService,private router:Router){
 
 }
 
@@ -25,8 +26,8 @@ constructor(private fb:FormBuilder,private storageService:StorageService){
 public addDomain(){
   if(this.domainUrl.value && this.siteName.value){
 this.storageService.setDomainData(this.siteName.value , this.domainUrl.value)
+this.router.navigateByUrl('/')
   }
-  alert('hello')
 }
 
 uploadVideo(event: any) {

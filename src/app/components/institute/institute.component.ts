@@ -12,40 +12,63 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrl: './institute.component.scss'
 })
 export class InstituteComponent {
-  public InstituteData :any;
-  public InstituteImages:any;
-  public lat:any;
-  public lng:any;
+  public InstituteData: any;
+  public InstituteImages: any;
+  public lat: any;
+  public lng: any;
   public mapSrc: SafeResourceUrl | undefined;  // The sanitized URL for the iframe
+  public domainData: any
+  public progress: number = 0;
 
-  
- constructor(private storageService:StorageService,private router:Router,private sanitizer: DomSanitizer){
-  this.InstituteData = this.storageService.getInstitute();
-  console.log(this.InstituteData)
- this.storageService.instituteImages$.subscribe((res)=>{
-    this.InstituteImages= res
-  })
-  this.storageService.latLng.subscribe((res)=>{
-    console.log(res)
-    this.lat = res.latitude,
-    this.lng = res.longitude
-    const url = `https://maps.google.com/maps?width=auto&height=500&hl=en&q=${this.lat},${this.lng}&t=&z=13&ie=UTF8&iwloc=B&output=embed`;
-    this.mapSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  })
+  constructor(private storageService: StorageService, private router: Router, private sanitizer: DomSanitizer) {
+    this.InstituteData = this.storageService.getInstitute();
+    let dataLoadedCount = 0;
+    const totalDataPoints = 3;
+    if (this.InstituteData) {
+      dataLoadedCount++;
+      this.progress = (dataLoadedCount / totalDataPoints) * 100;
+    }
+    this.storageService.instituteImages$.subscribe((res) => {
+      this.InstituteImages = res;
+      if (this.InstituteImages.thumbnail && this.InstituteImages.logo !== null) {
+        dataLoadedCount++;
+        this.progress = (dataLoadedCount / totalDataPoints) * 100;
+      }
+    })
 
- }
+    this.storageService.domainData$.subscribe((res) => {
+      this.domainData = res
+      if (res.name && res.url !== null) {
+        dataLoadedCount++;
+        this.progress = (dataLoadedCount / totalDataPoints) * 100;
+      }
 
+    })
+    this.storageService.latLng.subscribe((res) => {
+      console.log(res)
+      this.lat = res.latitude,
+        this.lng = res.longitude
+      const url = `https://maps.google.com/maps?width=auto&height=500&hl=en&q=${this.lat},${this.lng}&t=&z=13&ie=UTF8&iwloc=B&output=embed`;
+      this.mapSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
 
- public goToEdit(){
- this.router.navigateByUrl('/add')
- }
+    })
 
- public goToEditImage(){
-  this.router.navigateByUrl('/edit-profile')
- }
+  }
 
- public addCourse(){
-  this.router.navigateByUrl('/add-course')
- }
+  //  private updateProgress(count: number, total: number) {
+  //   this.progress = (count / total) * 100; // Calculate the progress percentage
+  // }
+
+  public goToEdit() {
+    this.router.navigateByUrl('/add')
+  }
+
+  public goToEditImage() {
+    this.router.navigateByUrl('/edit-profile')
+  }
+
+  public addCourse() {
+    this.router.navigateByUrl('/add-course')
+  }
 
 }
