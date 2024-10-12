@@ -18,7 +18,7 @@ export class InstituteComponent {
   public lng: any;
   public mapSrc: SafeResourceUrl | undefined;  // The sanitized URL for the iframe
   public domainData: any
-  public progress: number = 0;
+  public progress: any = 0;
 
   constructor(private storageService: StorageService, private router: Router, private sanitizer: DomSanitizer) {
     this.InstituteData = this.storageService.getInstitute();
@@ -26,13 +26,13 @@ export class InstituteComponent {
     const totalDataPoints = 3;
     if (this.InstituteData) {
       dataLoadedCount++;
-      this.progress = (dataLoadedCount / totalDataPoints) * 100;
+      this.progress = (((dataLoadedCount / totalDataPoints) * 100).toFixed(2));
     }
     this.storageService.instituteImages$.subscribe((res) => {
       this.InstituteImages = res;
       if (this.InstituteImages.thumbnail && this.InstituteImages.logo !== null) {
         dataLoadedCount++;
-        this.progress = (dataLoadedCount / totalDataPoints) * 100;
+        this.progress = (((dataLoadedCount / totalDataPoints) * 100).toFixed(2));
       }
     })
 
@@ -40,7 +40,7 @@ export class InstituteComponent {
       this.domainData = res
       if (res.name && res.url !== null) {
         dataLoadedCount++;
-        this.progress = (dataLoadedCount / totalDataPoints) * 100;
+        this.progress = (((dataLoadedCount / totalDataPoints) * 100).toFixed(2));
       }
 
     })
