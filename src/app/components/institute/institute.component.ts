@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { StorageService } from '../../utils/storage.service';
 import { Router } from '@angular/router';
 import { NgStyle } from '@angular/common';
-import { AgmCoreModule } from '@agm/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
