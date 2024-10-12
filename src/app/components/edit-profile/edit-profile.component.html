@@ -1,6 +1,6 @@
 <div class="container">
     <div class="text-end">
-        <img src="../../../assets/Close.png" style="width:15px" />
+        <img src="../../../assets/Close.png" style="width:15px;cursor:pointer"  (click)="close()" />
     </div>
     <div class="d-flex">
         <div>
@@ -20,14 +20,14 @@
 
             </div>
             <div class="ms-auto">
-                <img src="../../../assets/tabler_edit.png" />
+                <img (click)="fileThumbnailInput.click()" style="cursor:pointer" src="../../../assets/tabler_edit.png" />
 
             </div>
         </div>
         <div class="drop-area" [class.has-image]="logoImage" (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)" (drop)="onDrop($event, 'profile')">
+            (dragleave)="onDragLeave($event)" (drop)="onDrop($event, 'thumbnail')">
             <!-- If no image uploaded, show instruction text -->
-             @if(!logoImage){
+             @if(!thumbnailImage){
             <ng-container >
                 <p>Drag & Drop or
                     <span class="browse-link" (click)="fileThumbnailInput.click()">Browse</span>
@@ -35,42 +35,42 @@
             </ng-container>
         }
             <!-- Image preview once uploaded -->
-             @if(logoImage){
+             @if(uploadThumbnailProgress === 100){
             <ng-container >
-                <div class="image-preview">
-                    <img [src]="logoImage" alt="Profile Image Preview">
+                <div class="thumbnail-preview">
+                    <img [src]="thumbnailImage" alt="Profile Image Preview">
                 </div>
             </ng-container>
         }
             <!-- File input -->
-            <input type="file" accept="image/png" #fileThumbnailInput (change)="onThumbnailSelected($event, 'profile')" hidden>
+            <input type="file" accept="image/png" #fileThumbnailInput (change)="handleFileInput($event , 'thumbnail')" hidden>
         </div>
 
        
 
-        @if(logoFileName){
+        @if(thumbnailFileName){
          <div class="progress-div">
             <div class="d-flex">
                 <div class="d-flex gap-1">
                     <div class="image-preview" style="width:40px;height:40px">
-                        <img [src]="logoImage" alt="Profile Image Preview">
+                        <img [src]="thumbnailImage" alt="Profile Image Preview">
                     </div>
           
-                        <span class="image-name">{{logoFileName}}</span>
+                        <span class="image-name">{{thumbnailFileName}}</span>
                 
                 </div>
                 <div class="ms-auto">
-                    @if(uploadLogoProgress == 100){
+                    @if(uploadThumbnailProgress == 100){
                         <img src="../../../assets/x.png"/>
                     }
                 </div>
             </div>
-            @if(isLogoUploading){
+            @if(isThumbnailUploading){
             <div class="d-flex align-items-center"> 
                 <div class="progress" style="flex-grow: 1; margin-right: 10px;">
-                    <div class="progress-bar" [style.width]="uploadLogoProgress + '%'"></div>
+                    <div class="progress-bar" [style.width]="uploadThumbnailProgress + '%'"></div>
                 </div>
-                <span class="percentage-text">{{ uploadLogoProgress }}%</span> 
+                <span class="percentage-text">{{ uploadThumbnailProgress }}%</span> 
             </div>
             
         }
@@ -87,12 +87,12 @@
 
             </div>
             <div class="ms-auto">
-                <img src="../../../assets/tabler_edit.png" />
+                <img (click)="fileLogoInput.click()" src="../../../assets/tabler_edit.png" />
 
             </div>
         </div>
         <div class="drop-area" [class.has-image]="logoImage" (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)" (drop)="onDrop($event, 'profile')">
+            (dragleave)="onDragLeave($event)" (drop)="onDrop($event, 'logo')">
             <!-- If no image uploaded, show instruction text -->
              @if(!logoImage){
             <ng-container >
@@ -102,7 +102,7 @@
             </ng-container>
         }
             <!-- Image preview once uploaded -->
-             @if(logoImage){
+             @if(uploadLogoProgress === 100){
             <ng-container >
                 <div class="image-preview">
                     <img [src]="logoImage" alt="Profile Image Preview">
@@ -110,7 +110,7 @@
             </ng-container>
         }
             <!-- File input -->
-            <input type="file" accept="image/png" #fileLogoInput (change)="onlogoSelected($event, 'profile')" hidden>
+            <input type="file" accept="image/png" #fileLogoInput (change)="handleFileInput($event , 'logo')" hidden>
         </div>
 
        
@@ -146,6 +146,6 @@
     </div>
 
     <div style="margin-top:6em">
-        <button class="primary-button">Proceed To Course Detail</button>
+        <button class="primary-button" (click)="handleSubmit()">Proceed To Course Detail</button>
     </div>
 </div>

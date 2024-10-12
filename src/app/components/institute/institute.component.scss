@@ -1,8 +1,36 @@
+@import "../../../assets/styles/common";
+@import "../../../assets/variables/colors.scss";
+
 .profile-image-cnt {
   position: relative;
   height: 35.5vh;
   width: 100%;
-  background-color: red;
+  background-size: cover;
+  background-position: center;
+}
+
+.edit-profile-btn{
+  position: absolute;
+  right:10px;
+  top:20px;
+  border-radius: 10px;
+  border:solid 1px $secondary-text-color;
+  justify-content: center;
+  display: flex;
+  align-items: center; /* Vertically centers the content */
+  background-color: #f0f0f0;
+  cursor: pointer;
+
+  p{
+    margin: 0; /* Reset any default margin */
+    display: flex;
+    align-items: center; /* Align text and image vertically inside the paragraph */
+    justify-content: center; 
+    font-weight: 400;
+    font-size:12px;
+    color:$secondary-text-color;
+    padding:4px
+  }
 }
 
 .logo-wrapper {
@@ -14,7 +42,8 @@
 }
 
 .logo-cnt {
-  background-color: yellow;
+  background-size: cover;
+  background-position: center;
   border-radius: 50%;
   height: 25vh;
   width: 25vh;
@@ -36,29 +65,71 @@
     margin: 0; /* Remove default margin */
     font-size: 20px;
     font-weight: 600;
+    color:$text-color
   }
 }
 
 
 .institute-details{
     margin-top:1em;
+    color:$secondary-text-color;
+    font-weight: 400;
+    font-size:14px
 }
 
 
 .contact-details{
+  margin-top:10px;
     ul{
         list-style-type: none;
         margin:0px;
-        padding:0px
+        padding:0px;
+        
     }
 
     li{
         margin-bottom:10px;
+        color:$secondary-text-color;
+        font-size:14px;
+        font-weight: 400;
     }
 
     .owner_name{
-        font-weight: 600;
-        font-size:22px;
-        
+        font-weight: 500;
+        font-size:17px;
+        color:#454056
     }
+}
+
+
+.edit-profile{
+  font-size:12px;
+  cursor: pointer;
+  color:$secondary-text-color
+}
+
+
+.add-course-cnt{
+  background: linear-gradient(94.38deg, #008CE4 -1.08%, #00AF9E 96.88%);
+  border-radius: 20px 20px 0px 0px;
+  padding:15px;
+    h6{
+      color:#fff;
+      font-weight:500;
+      font-size:14px
+    }
+    p{
+      color:#fff;
+      font-weight:400;
+      font-size:12px;
+    }
+}
+
+.add-course-btn{
+  border:solid 1px #fff;
+  color:#fff;
+  background-color: transparent;
+  border-radius: 8px;
+  font-size: 12px;
+  padding:0;
 }
