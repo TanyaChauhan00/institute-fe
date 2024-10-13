@@ -45,8 +45,8 @@
   background-size: cover;
   background-position: center;
   border-radius: 50%;
-  height: 25vh;
-  width: 25vh;
+  height: 22vh;
+  width: 22vh;
   position: relative;
   bottom: -12.5vh;
 }
@@ -153,4 +153,9 @@ height:4px
 
 .progress-bar {
   background: grey;
+}
+
+
+@media only screen and (max-width:375px){
+ 
 }
