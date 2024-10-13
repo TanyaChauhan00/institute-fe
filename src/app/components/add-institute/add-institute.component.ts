@@ -1,4 +1,3 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StorageService } from '../../utils/storage.service';
@@ -8,7 +7,7 @@ import { InstituteData } from '../../utils/institute.interface';
 @Component({
   selector: 'app-add-institute',
   standalone: true,
-  imports: [HttpClientModule,FormsModule,ReactiveFormsModule],
+  imports: [FormsModule,ReactiveFormsModule],
   templateUrl: './add-institute.component.html',
   styleUrl: './add-institute.component.scss'
 })
@@ -56,7 +55,7 @@ export class AddInstituteComponent {
   public filteredStates: any[] = [];
   
 
-  constructor(private router:Router,private http: HttpClient,private fb: FormBuilder,private storageService:StorageService) {
+  constructor(private router:Router,private fb: FormBuilder,private storageService:StorageService) {
     this.instituteForm = this.fb.group({
       instituteName: ['', Validators.required],
       ownerName: ['', Validators.required],
@@ -109,18 +108,14 @@ public detectLocation(): void {
   }
 }
 
-getAddressFromCoordinates(latitude: number, longitude: number): void {
-  const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
-  this.http.get(nominatimUrl).subscribe(
-    (response: any) => {
-      const address = response.display_name;
+getAddressFromCoordinates(latitude: number, longitude: number) {
+  this.storageService.getAddressFromCoordinates(latitude,longitude).subscribe({
+    next:(res)=>{
+      const address = res.display_name;
       this.instituteForm.get('address')?.setValue(address)
-      console.log('Address: ', address);
-    },
-    (error) => {
-      console.error('Error fetching address:', error);
+  
     }
-  );
+  })
 }
 
 public onSave(){

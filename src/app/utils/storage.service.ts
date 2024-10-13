@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -21,6 +22,10 @@ export class StorageService {
     lat:null,
     lng:null
   })
+
+  constructor(private http: HttpClient) {}
+
+  
   public setInstituteName(value: any): void {
     this.instituteDataSubject.next(value);
   }
@@ -36,5 +41,10 @@ export class StorageService {
 
   public setDomainData(name:any , url:any):void{
     this.domainSUbject.next({name,url})
+  }
+
+  public getAddressFromCoordinates(latitude: number, longitude: number) {
+    const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
+    return this.http.get<any>(nominatimUrl)
   }
 }
