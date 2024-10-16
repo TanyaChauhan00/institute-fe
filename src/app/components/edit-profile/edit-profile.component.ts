@@ -23,11 +23,11 @@ export class EditProfileComponent {
   public thumbnailbase64: any;
 
   constructor(private router: Router, private storageService: StorageService) {
-    this.storageService.instituteImages$.subscribe((res)=>{
-      console.log(res)
-      this.thumbnailImage = res.thumbnail,
-      this.logoImage = res.logo
-    })
+    this.storageService.instituteImages$.subscribe((res) => {
+      if (res) {
+        (this.thumbnailImage = res.thumbnail), (this.logoImage = res.logo);
+      }
+    });
   }
 
   // Handle Drag and Drop Events
@@ -44,14 +44,14 @@ export class EditProfileComponent {
     event.preventDefault();
     (event.target as HTMLElement).classList.remove('dragover');
     const file = event.dataTransfer?.files?.[0];
-    if (file) this.handleFileInput(file, type);
+    if (file) this.handleFileInput({ target: { files: [file] } }, type);
   }
 
   // Handle File Input (Drop or Select)
   handleFileInput(event: any, type: 'logo' | 'thumbnail') {
-    const file = event?.target.files[0];
-    const fileName = file.name;
-    const fileType = file.type;
+    const file = event?.target?.files?.[0];
+    const fileName = file?.name;
+    const fileType = file?.type;
 
     if (fileType !== 'image/png') {
       alert('Only PNG images are allowed.');
@@ -59,11 +59,13 @@ export class EditProfileComponent {
     }
 
     // Initialize upload state and progress
-    const isUploadingKey = type === 'logo' ? 'isLogoUploading' : 'isThumbnailUploading';
+    const isUploadingKey =
+      type === 'logo' ? 'isLogoUploading' : 'isThumbnailUploading';
     const fileNameKey = type === 'logo' ? 'logoFileName' : 'thumbnailFileName';
     const base64Key = type === 'logo' ? 'logobase64' : 'thumbnailbase64';
     const imageKey = type === 'logo' ? 'logoImage' : 'thumbnailImage';
-    const progressKey = type === 'logo' ? 'uploadLogoProgress' : 'uploadThumbnailProgress';
+    const progressKey =
+      type === 'logo' ? 'uploadLogoProgress' : 'uploadThumbnailProgress';
 
     this[fileNameKey] = fileName;
     this[isUploadingKey] = true; // Set uploading status to true
@@ -71,13 +73,16 @@ export class EditProfileComponent {
 
     this.convertToBase64(file).then((base64: string) => {
       this[base64Key] = base64;
-      this[imageKey] = base64; 
+      this[imageKey] = base64;
     });
 
     this.simulateUpload(progressKey, 10);
   }
 
-  private simulateUpload(progressKey: 'uploadLogoProgress' | 'uploadThumbnailProgress', increment: number) {
+  private simulateUpload(
+    progressKey: 'uploadLogoProgress' | 'uploadThumbnailProgress',
+    increment: number
+  ) {
     const uploadInterval = setInterval(() => {
       if (this[progressKey] >= 100) {
         clearInterval(uploadInterval);
@@ -99,15 +104,15 @@ export class EditProfileComponent {
     });
   }
 
-
   public handleSubmit() {
-    this.storageService.setInstituteImageData(this.thumbnailbase64, this.logobase64);
-    this.router.navigateByUrl('/')
+    this.storageService.setInstituteImageData(
+      this.thumbnailbase64,
+      this.logobase64
+    );
+    this.router.navigateByUrl('/');
   }
-  
 
-  
   public close() {
-    this.router.navigateByUrl('')
+    this.router.navigateByUrl('');
   }
 }

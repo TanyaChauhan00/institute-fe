@@ -40,9 +40,9 @@ export class AppComponent {
       event.preventDefault();
     }
     // Prevent Ctrl+Shift+I (Chrome Dev Tools)
-    if (event.ctrlKey && event.shiftKey && event.key === 'I') {
-      event.preventDefault();
-    }
+    // if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+    //   event.preventDefault();
+    // }
     // Prevent Ctrl+Shift+J (Console)
     if (event.ctrlKey && event.shiftKey && event.key === 'J') {
       event.preventDefault();
